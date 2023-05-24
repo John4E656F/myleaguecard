@@ -1,11 +1,17 @@
 import { useState } from 'react';
-import Test from './components/text';
+import logo from './assets/logo.svg';
+import CreateCard from './pages/CreateCard';
 
 function App() {
   return (
-    <>
-      <Test />
-    </>
+    <main>
+      <nav className='navbar'>
+        <img src={logo} alt='logo' className='logo' />
+      </nav>
+      <section className='createCard'>
+        <CreateCard />
+      </section>
+    </main>
   );
 }
 

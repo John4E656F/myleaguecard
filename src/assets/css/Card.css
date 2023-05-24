@@ -1,0 +1,79 @@
+.card {
+  height: 300px;
+  width: 500px;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(8px);
+  clip-path: polygon(0 0, 60% 0, 70% 100%, 0% 100%);
+  z-index: 2;
+}
+
+.details {
+  z-index: 3;
+  position: relative;
+  color: white;
+  padding: 25px;
+  padding-left: 2em;
+}
+
+.divider {
+  height: 2px;
+  width: 60%;
+  margin: 5px 0 5px 0;
+  border: 1px solid rgba(112, 112, 112, 0.286);
+  border-radius: 100%;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+  align-items: center;
+}
+
+.username {
+  font-family: 'Beaufort', Fallback, sans-serif;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.rank {
+  width: 3em;
+}
+
+.tier {
+  width: 4em;
+}
+
+.rankDetails {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eloDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.elo {
+  display: flex;
+  gap: 5px;
+}

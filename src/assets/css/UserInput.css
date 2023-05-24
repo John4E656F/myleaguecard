@@ -1,0 +1,12 @@
+.inputContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.userInputContainer {
+  background-color: aliceblue;
+  width: 80%;
+  height: 200px;
+  padding: 1em;
+  border-radius: 1em;
+}
