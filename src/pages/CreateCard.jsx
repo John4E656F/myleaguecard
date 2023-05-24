@@ -21,6 +21,7 @@ function CreateCard() {
   const [backgroundImage, setBackgroundImage] = useState('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_1.jpg');
   const [summoner, setSummoner] = useState(null);
   const [data, setData] = useState();
+  const [userInput, setUserInput] = useState();
 
   useEffect(() => {
     fetchData({ summoner, setSummoner, tierImages, data, setData });
@@ -29,7 +30,7 @@ function CreateCard() {
   return (
     <>
       <div className='inputContainer'>
-        <UserInput />
+        <UserInput userInput={userInput} setUserInput={setUserInput} />
       </div>
       <div className='cardContainer'>
         <Card backgroundImage={backgroundImage} summoner={summoner} data={data} roleImages={roleImages} />
