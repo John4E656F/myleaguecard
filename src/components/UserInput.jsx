@@ -1,23 +1,31 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useGetUserQuery } from '../services/riot';
+import { setUser } from '../features/cardSlice';
 
-const UserInput = ({ userInput, setUserInput }) => {
+const UserInput = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [username, setUsername] = useState('');
-  const { getUser, isLoading, isError, error, isSuccess } = useGetUserQuery(username);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { data, isLoading, isError, error, isSuccess } = useGetUserQuery(username, { skip: !isSubmitted });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(username);
-    getUser;
+    setIsSubmitted(true);
   };
 
   const handleChange = (event) => {
-    const { value, name } = event.target;
+    const { value } = event.target;
     setUsername(value);
-    setUserInput({ ...userInput, [name]: value });
   };
+
+  if (isSuccess || isError) {
+    dispatch(setUser(data));
+    setIsSubmitted(false);
+    console.log(user);
+  }
+
   return (
     <div className='userInputContainer'>
       <form onSubmit={handleSubmit}>
@@ -27,6 +35,9 @@ const UserInput = ({ userInput, setUserInput }) => {
         </label>
         <input type='submit' value='Submit' />
       </form>
+      {isLoading && <div>Loading...</div>}
+      {isError && <div>Error: {error.message}</div>}
+      {isSuccess && <div>User Data: {JSON.stringify(data)}</div>}
     </div>
   );
 };
