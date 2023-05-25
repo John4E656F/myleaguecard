@@ -1,18 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useGetUserQuery } from '../services/riot';
-import { setUser } from '../features/cardSlice';
+import { useLazyGetUserQuery, useLazyGetSummonerQuery } from '../services/riot';
 
 const UserInput = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const { user, summoner } = useSelector((state) => state.card);
   const [username, setUsername] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const { data, isLoading, isError, error, isSuccess } = useGetUserQuery(username, { skip: !isSubmitted });
+
+  const [fetchUser, { data: userData, isLoading: userLoading, isError: userError, error: userErrorObj, isSuccess: userSuccess }] =
+    useLazyGetUserQuery();
+  const [
+    fetchSummoner,
+    { data: summonerData, isLoading: summonerLoading, isError: summonerError, error: summonerErrorObj, isSuccess: summonerSuccess },
+  ] = useLazyGetSummonerQuery();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
+    try {
+      fetchUser(username);
+      setUsername('');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (event) => {
@@ -20,11 +29,19 @@ const UserInput = () => {
     setUsername(value);
   };
 
-  if (isSuccess || isError) {
-    dispatch(setUser(data));
-    setIsSubmitted(false);
-    console.log(user);
-  }
+  useEffect(() => {
+    if (userSuccess && userData) {
+      fetchSummoner(userData.id);
+    }
+  }, [userSuccess, userData]);
+
+  useEffect(() => {
+    if (userSuccess || userError || summonerSuccess || summonerError) {
+      // fetchSummoner(userData.id);
+      console.log(summoner);
+      console.log(user);
+    }
+  }, [userSuccess, userError]);
 
   return (
     <div className='userInputContainer'>
@@ -35,9 +52,6 @@ const UserInput = () => {
         </label>
         <input type='submit' value='Submit' />
       </form>
-      {isLoading && <div>Loading...</div>}
-      {isError && <div>Error: {error.message}</div>}
-      {isSuccess && <div>User Data: {JSON.stringify(data)}</div>}
     </div>
   );
 };

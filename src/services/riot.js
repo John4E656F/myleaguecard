@@ -4,24 +4,23 @@ const key = import.meta.env.VITE_API;
 
 export const riotApi = createApi({
   reducerPath: 'riotApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `https://euw1.api.riotgames.com/` }),
   endpoints: (builder) => ({
     getUser: builder.query({
       query: (username) => {
         return {
-          url: `${username}?api_key=${key}`,
+          url: `lol/summoner/v4/summoners/by-name/${username}?api_key=${key}`,
         };
       },
-      async onQueryStarted({ dispatch, queryFulfilled }) {
-        try {
-          const data = await queryFulfilled;
-          console.log(data);
-        } catch (e) {
-          console.log(e);
-        }
+    }),
+    getSummoner: builder.query({
+      query: (id) => {
+        return {
+          url: `lol/league/v4/entries/by-summoner/${id}?api_key=${key}`,
+        };
       },
     }),
   }),
 });
 
-export const { useGetUserQuery } = riotApi;
+export const { useGetUserQuery, useLazyGetUserQuery, useGetSummonerQuery, useLazyGetSummonerQuery } = riotApi;
