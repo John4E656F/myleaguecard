@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { calcWinrate } from '../helper/calcWinrate';
 import { top, jungle, mid, bot, support, fill } from '../assets/roles/roles';
 import { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER } from '../assets/ranks/ranks';
+import * as Backgrounds from './index';
 
 const roleImages = {
   top: { name: 'top', assets: top },
@@ -14,8 +15,9 @@ const roleImages = {
 };
 const tierImages = { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER };
 
-function Card({ backgroundImage }) {
+function Card({ backgroundImage, selectedBackground }) {
   const { user, summoner } = useSelector((state) => state.card);
+  const [displayBG, setDisplayBG] = useState();
   const [winrate, setWinrate] = useState(null);
   const [tierImage, setTierImage] = useState(null);
 
@@ -27,9 +29,23 @@ function Card({ backgroundImage }) {
         setTierImage(tierImages[tier]);
       }
     }
-
-    console.log(user);
   }, [user, summoner]);
+
+  useEffect(() => {
+    if (selectedBackground) {
+      let userSelectedBackground = selectedBackground.split('/').pop().split('.')[0];
+      if (userSelectedBackground in Backgrounds) {
+        setDisplayBG(Backgrounds[userSelectedBackground]);
+      }
+    } else {
+      console.log(backgroundImage);
+      setDisplayBG({ backgroundImage });
+    }
+  }, [selectedBackground, backgroundImage]);
+
+  useEffect(() => {
+    console.log(displayBG);
+  }, [displayBG]);
 
   return (
     <>
@@ -39,7 +55,7 @@ function Card({ backgroundImage }) {
             className='background'
             style={{
               zIndex: 1,
-              backgroundImage: `url(${backgroundImage})`,
+              backgroundImage: `url/src/assets/splash/Akshan_0.jpg`,
             }}
           >
             <div className='overlay'>
