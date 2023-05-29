@@ -55,7 +55,7 @@ function Card({ backgroundImage, selectedBackground }) {
             className='background'
             style={{
               zIndex: 1,
-              backgroundImage: `url/src/assets/splash/Akshan_0.jpg`,
+              backgroundImage: `url(${displayBG})`,
             }}
           >
             <div className='overlay'>
