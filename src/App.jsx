@@ -11,6 +11,9 @@ function App() {
       <section className='createCard'>
         <CreateCard />
       </section>
+      <footer className='footer'>
+        <p>&copy; 2021</p>
+      </footer>
     </main>
   );
 }

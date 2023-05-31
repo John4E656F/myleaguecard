@@ -58,42 +58,67 @@ function Card({ backgroundImage, selectedBackground }) {
               backgroundImage: `url(${displayBG})`,
             }}
           >
-            <div className='overlay'>
-              <div className='details'>
-                <div className='cardHeader'>
-                  <h1 className='username'>{user.name}</h1>
-                  <img src={roleImages.fill.assets} alt={roleImages.fill.name} className='rank' />
-                </div>
-                <div className='divider' />
-                <div className='rankDetails'>
-                  {Array.isArray(summoner) && summoner.length > 0 ? (
-                    <>
-                      <div className='eloDetails'>
-                        <p>League Point: {summoner[0].leaguePoints}</p>
-                        <div className='elo'>
-                          <p>Wins: {summoner[0].wins}</p>
-                          <p>Losses: {summoner[0].losses}</p>
-                        </div>
-                        <p>Winrate: {winrate}%</p>
-                      </div>
-                      <img src={tierImage} alt={summoner[0].tier} className='tier' />
-                    </>
-                  ) : (
+            <div className='details'>
+              <div className='cardHeader'>
+                <h1 className='username'>{user.name}</h1>
+                <img src={roleImages.fill.assets} alt={roleImages.fill.name} className='rank' />
+              </div>
+              <div className='divider' />
+              <div className='rankDetails'>
+                {Array.isArray(summoner) && summoner.length > 0 ? (
+                  <>
                     <div className='eloDetails'>
-                      <p>League Point: NaN</p>
+                      <p>League Point: {summoner[0].leaguePoints}</p>
                       <div className='elo'>
-                        <p>Wins: NaN</p>
-                        <p>Losses: Nan</p>
+                        <p>Wins: {summoner[0].wins}</p>
+                        <p>Losses: {summoner[0].losses}</p>
                       </div>
-                      <p>Winrate: 0%</p>
+                      <p>Winrate: {winrate}%</p>
                     </div>
-                  )}
-                </div>
+                    <img src={tierImage} alt={summoner[0].tier} className='tier' />
+                  </>
+                ) : (
+                  <div className='eloDetails'>
+                    <p>League Point: NaN</p>
+                    <div className='elo'>
+                      <p>Wins: NaN</p>
+                      <p>Losses: Nan</p>
+                    </div>
+                    <p>Winrate: 0%</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className='skeletonCard'>
+          <div className='skeletonHeader'>
+            <div className='skeletonTitle' />
+            <div className='skeletonPositionIcon' />
+          </div>
+          <div className='skeletonDetails'>
+            <div className='skeletonRank' />
+            <div className='skeletonRankIcon' />
+          </div>
+          <div className='skeletonExtraDetails'>
+            <div className='skeletonUserInfo'>
+              <div className='skeletonAge' />
+              <div className='skeletonUsualPlayTime' />
+            </div>
+            <div className='skeletonSocial'>
+              <div className='skeletonHolder'>
+                <div className='skeletonHolderIcon' />
+                <div className='skeletonHolderName' />
+              </div>
+              <div className='skeletonHolder'>
+                <div className='skeletonHolderIcon' />
+                <div className='skeletonHolderName' />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
