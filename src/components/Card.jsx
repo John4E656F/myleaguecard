@@ -37,9 +37,6 @@ function Card({ backgroundImage, selectedBackground }) {
       if (userSelectedBackground in Backgrounds) {
         setDisplayBG(Backgrounds[userSelectedBackground]);
       }
-    } else {
-      console.log(backgroundImage);
-      setDisplayBG({ backgroundImage });
     }
   }, [selectedBackground, backgroundImage]);
 
@@ -55,7 +52,7 @@ function Card({ backgroundImage, selectedBackground }) {
             className='background'
             style={{
               zIndex: 1,
-              backgroundImage: `url(${displayBG})`,
+              backgroundImage: `url(${selectedBackground ? displayBG : backgroundImage})`,
             }}
           >
             <div className='details'>
@@ -68,25 +65,47 @@ function Card({ backgroundImage, selectedBackground }) {
                 {Array.isArray(summoner) && summoner.length > 0 ? (
                   <>
                     <div className='eloDetails'>
-                      <p>League Point: {summoner[0].leaguePoints}</p>
+                      <p className='infoText'>
+                        <span className='infoName'>League Point: </span> <span className='infoData'> {summoner[0].leaguePoints}</span>
+                      </p>
                       <div className='elo'>
-                        <p>Wins: {summoner[0].wins}</p>
-                        <p>Losses: {summoner[0].losses}</p>
+                        <p className='infoText'>
+                          <span className='infoName'>Wins: </span> <span className='infoData'>{summoner[0].wins}</span>
+                        </p>
+                        <p className='infoText'>
+                          <span className='infoName'>Losses: </span> <span className='infoData'>{summoner[0].losses}</span>
+                        </p>
                       </div>
-                      <p>Winrate: {winrate}%</p>
+                      <p className='infoText'>
+                        <span className='infoName'>Winrate: </span> <span className='infoData'>{winrate}%</span>
+                      </p>
                     </div>
                     <img src={tierImage} alt={summoner[0].tier} className='tier' />
                   </>
                 ) : (
                   <div className='eloDetails'>
-                    <p>League Point: NaN</p>
+                    <p className='infoText'>
+                      <span className='infoName'>League Point: </span> <span className='infoData'> </span>
+                    </p>
                     <div className='elo'>
-                      <p>Wins: NaN</p>
-                      <p>Losses: Nan</p>
+                      <p className='infoText'>
+                        <span className='infoName'>Wins: </span> <span className='infoData'> </span>
+                      </p>
+                      <p className='infoText'>
+                        {' '}
+                        <span className='infoName'>Losses: </span>
+                        <span className='infoData'> </span>
+                      </p>
                     </div>
-                    <p>Winrate: 0%</p>
+                    <p className='infoText'>
+                      <span className='infoName'>Winrate: </span> <span className='infoData'>0%</span>
+                    </p>
                   </div>
                 )}
+              </div>
+              <div className='divider v1' />
+              <div className='userDetails'>
+                <h3>About me:</h3>
               </div>
             </div>
           </div>

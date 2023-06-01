@@ -4,7 +4,7 @@ import url from 'url';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const imageDirectory = path.join(__dirname, '../assets/splash');
+const imageDirectory = path.join(__dirname, '../assets/bg');
 
 fs.readdir(imageDirectory, (error, files) => {
   if (error) {
@@ -13,8 +13,10 @@ fs.readdir(imageDirectory, (error, files) => {
   }
 
   const exports = files.map((file) => {
-    const imageName = path.parse(file).name;
-    return `export { default as ${imageName} } from './splash/${file}';`;
+    let imageName = path.parse(file).name;
+    // remove underscore and number from the end
+    imageName = imageName.replace(/_[0-9]+$/, '');
+    return `export { default as ${imageName} } from '../assets/bg/${file}';`;
   });
 
   fs.writeFile('index.js', exports.join('\n'), (error) => {
