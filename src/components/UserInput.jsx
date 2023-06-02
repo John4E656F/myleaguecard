@@ -51,6 +51,9 @@ const UserInput = ({ setselectedBackground }) => {
     const key = event.target.keyid;
     const images = event.target.images;
     setSelectedChampion({ name: name, key: key, images: images });
+    if (selectedChampion) {
+      setselectedBackground(getChampionImages(selectedChampion, championimages));
+    }
   };
 
   const handleSubmit = (event) => {
@@ -67,12 +70,6 @@ const UserInput = ({ setselectedBackground }) => {
   const handleDescriptionChange = (event) => {
     dispatch(setUserDescription({ description: event.target.value }));
   };
-
-  useEffect(() => {
-    if (selectedChampion) {
-      setselectedBackground(getChampionImages(selectedChampion, championimages));
-    }
-  }, [userSuccess, userError, selectedChampion]);
 
   useEffect(() => {
     if (userSuccess && userData) {
