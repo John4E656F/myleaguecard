@@ -16,7 +16,7 @@ const roleImages = {
 const tierImages = { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER };
 
 function Card({ backgroundImage, selectedBackground }) {
-  const { user, summoner, age, championMastery } = useSelector((state) => state.card);
+  const { user, summoner, age, championMastery, description } = useSelector((state) => state.card);
   const [displayBG, setDisplayBG] = useState();
   const [winrate, setWinrate] = useState(null);
   const [tierImage, setTierImage] = useState(null);
@@ -41,9 +41,9 @@ function Card({ backgroundImage, selectedBackground }) {
   }, [selectedBackground, backgroundImage]);
 
   useEffect(() => {
-    console.log(championMastery);
+    console.log(description);
     console.log(user);
-  }, [displayBG, user, championMastery]);
+  }, [displayBG, user, description]);
 
   return (
     <>
@@ -134,7 +134,12 @@ function Card({ backgroundImage, selectedBackground }) {
               <div className='divider v2' />
               <div className='userDetails'>
                 <h3 className='detailsHeading'>About me:</h3>
-                Age: {age}
+                <p>
+                  <span className='infoName'>Age:</span> <span className='infoData'>{age}</span>
+                </p>
+                <p>
+                  <span className='infoName'>Description:</span> <span className='infoData description'>{description}</span>
+                </p>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import getChampionImages from '../helper/getChampionsImages';
 import { useLazyGetUserQuery, useLazyGetSummonerQuery, useLazyGetChampionMasteryQuery } from '../services/riot';
 import { useGetChampionsListQuery } from '../services/dragon';
-import { setUsername, setUserAge, setChampionsMastery } from '../features/cardSlice';
+import { setUsername, setChampionsMastery, setUserAge, setUserDescription } from '../features/cardSlice';
 import * as championimages from './index';
 import * as championtiles from './tilesAssets';
 
@@ -11,7 +11,7 @@ import compareChampions from '../helper/compareChampions';
 
 const UserInput = ({ setselectedBackground }) => {
   const dispatch = useDispatch();
-  const { user, summoner, age } = useSelector((state) => state.card);
+  const { user, summoner, age, description } = useSelector((state) => state.card);
   const [userName, setUserName] = useState('');
 
   const [selectedChampion, setSelectedChampion] = useState('');
@@ -64,6 +64,10 @@ const UserInput = ({ setselectedBackground }) => {
     dispatch(setUserAge({ age: age }));
   };
 
+  const handleDescriptionChange = (event) => {
+    dispatch(setUserDescription({ description: event.target.value }));
+  };
+
   useEffect(() => {
     if (selectedChampion) {
       setselectedBackground(getChampionImages(selectedChampion, championimages));
@@ -101,7 +105,7 @@ const UserInput = ({ setselectedBackground }) => {
             <select value={selectedChampion.name} onChange={handleChangeChampion}>
               <option value=''>--Please select a champion--</option>
               {Object.values(championsList.data).map((champion) => (
-                <option key={champion.id} value={champion.id} keyid={champion.key} images={champion.image.full}>
+                <option key={champion.id} value={champion.id}>
                   {champion.name}
                 </option>
               ))}
@@ -119,6 +123,18 @@ const UserInput = ({ setselectedBackground }) => {
           </select>
         </label>
       </div>
+      <label htmlFor='description'>Description:</label>
+      <textarea
+        id='description'
+        value={description}
+        onChange={handleDescriptionChange}
+        maxLength='120'
+        rows={3}
+        cols={30}
+        style={{ resize: 'none', borderRadius: '0.2em' }}
+        placeholder=' Enter your description here'
+      />
+      <p style={{ fontSize: '0.8em', color: 'gray' }}>Description has 120-character limit. Character count: {description ? description.length : 0}</p>
     </div>
   );
 };

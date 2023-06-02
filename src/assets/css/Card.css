@@ -1,6 +1,6 @@
 .card {
-  height: 500px;
-  width: 700px;
+  height: 550px;
+  width: 750px;
   border-radius: 1em;
 }
 
@@ -32,7 +32,7 @@
   z-index: 3;
   position: relative;
   color: white;
-  padding: 1.5em;
+  padding: 0.8em;
   padding-left: 2em;
 }
 
@@ -139,6 +139,12 @@
   width: 60px;
   height: 60px;
   border-radius: 2em;
+}
+
+.description {
+  display: block;
+  max-width: 50%;
+  word-wrap: break-word;
 }
 
 .skeletonCard {
