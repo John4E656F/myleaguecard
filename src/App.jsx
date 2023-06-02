@@ -12,7 +12,7 @@ function App() {
         <CreateCard />
       </section>
       <footer className='footer'>
-        <p>&copy; 2021</p>
+        <p>&copy;4E656F 2023</p>
       </footer>
     </main>
   );

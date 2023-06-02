@@ -85,16 +85,16 @@ function Card({ backgroundImage, selectedBackground }) {
                 ) : (
                   <div className='eloDetails'>
                     <p className='infoText'>
-                      <span className='infoName'>League Point: </span> <span className='infoData'> </span>
+                      <span className='infoName'>League Point: </span> <span className='infoData'> 0 </span>
                     </p>
                     <div className='elo'>
                       <p className='infoText'>
-                        <span className='infoName'>Wins: </span> <span className='infoData'> </span>
+                        <span className='infoName'>Wins: </span> <span className='infoData'> 0 </span>
                       </p>
                       <p className='infoText'>
                         {' '}
                         <span className='infoName'>Losses: </span>
-                        <span className='infoData'> </span>
+                        <span className='infoData'> 0 </span>
                       </p>
                     </div>
                     <p className='infoText'>

@@ -16,6 +16,12 @@ function CreateCard() {
   return (
     <>
       <div className='inputContainer'>
+        <h1 className='header'>
+          <span className='bigSpan'>
+            Craft your gaming card! <br />{' '}
+          </span>
+          Showcase your prowess, share it on social media, and connect with gamers. <br /> Let the games begin!
+        </h1>
         <UserInput data={data} setData={setData} setselectedBackground={setselectedBackground} />
       </div>
       <div className='cardContainer'>

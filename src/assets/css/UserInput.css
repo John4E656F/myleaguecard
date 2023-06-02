@@ -1,12 +1,46 @@
-.inputContainer {
-  display: flex;
-  justify-content: center;
+.header {
+  color: #c8aa6e;
+  width: 80%;
+  margin: auto;
+  font-size: 1.5em;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.bigSpan {
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .userInputContainer {
   background-color: aliceblue;
+  margin: auto;
   width: 80%;
-  height: 200px;
+  height: auto;
   padding: 1em;
   border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userNameInput {
+  margin-left: 1em;
+}
+
+.submitUsername {
+  margin-left: 1em;
+}
+
+.champAndAgeContainer {
+  display: flex;
+  gap: 1em;
+}
+
+.inputCol {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
