@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const dragonApi = createApi({
   reducerPath: 'dragonApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `http://ddragon.leagueoflegends.com/cdn/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `https://ddragon.leagueoflegends.com/cdn/` }),
   endpoints: (builder) => ({
     getChampionsList: builder.query({
       query: () => {
