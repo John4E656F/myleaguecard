@@ -20,7 +20,14 @@ export const riotApi = createApi({
         };
       },
     }),
+    getChampionMastery: builder.query({
+      query: (id) => {
+        return {
+          url: `lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${key}`,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetUserQuery, useLazyGetUserQuery, useGetSummonerQuery, useLazyGetSummonerQuery } = riotApi;
+export const { useGetUserQuery, useLazyGetUserQuery, useGetSummonerQuery, useLazyGetSummonerQuery, useLazyGetChampionMasteryQuery } = riotApi;

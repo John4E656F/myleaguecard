@@ -16,7 +16,7 @@ const roleImages = {
 const tierImages = { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER };
 
 function Card({ backgroundImage, selectedBackground }) {
-  const { user, summoner } = useSelector((state) => state.card);
+  const { user, summoner, age } = useSelector((state) => state.card);
   const [displayBG, setDisplayBG] = useState();
   const [winrate, setWinrate] = useState(null);
   const [tierImage, setTierImage] = useState(null);
@@ -42,7 +42,8 @@ function Card({ backgroundImage, selectedBackground }) {
 
   useEffect(() => {
     console.log(displayBG);
-  }, [displayBG]);
+    console.log(user);
+  }, [displayBG, user]);
 
   return (
     <>
@@ -65,6 +66,7 @@ function Card({ backgroundImage, selectedBackground }) {
                 {Array.isArray(summoner) && summoner.length > 0 ? (
                   <>
                     <div className='eloDetails'>
+                      <h3 className='detailsHeading'>My League Stats:</h3>
                       <p className='infoText'>
                         <span className='infoName'>League Point: </span> <span className='infoData'> {summoner[0].leaguePoints}</span>
                       </p>
@@ -92,7 +94,6 @@ function Card({ backgroundImage, selectedBackground }) {
                         <span className='infoName'>Wins: </span> <span className='infoData'> 0 </span>
                       </p>
                       <p className='infoText'>
-                        {' '}
                         <span className='infoName'>Losses: </span>
                         <span className='infoData'> 0 </span>
                       </p>
@@ -104,8 +105,13 @@ function Card({ backgroundImage, selectedBackground }) {
                 )}
               </div>
               <div className='divider v1' />
+              <div className='championMasteryDetails'>
+                <h3 className='detailsHeading'>Champion Mastery:</h3>
+              </div>
+              <div className='divider v1' />
               <div className='userDetails'>
-                <h3>About me:</h3>
+                <h3 className='detailsHeading'>About me:</h3>
+                Age: {age}
               </div>
             </div>
           </div>

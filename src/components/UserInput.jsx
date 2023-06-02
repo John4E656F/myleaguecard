@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import getChampionImages from '../helper/getChampionsImages';
-import { useLazyGetUserQuery, useLazyGetSummonerQuery } from '../services/riot';
+import { useLazyGetUserQuery, useLazyGetSummonerQuery, useLazyGetChampionMasteryQuery } from '../services/riot';
 import { useGetChampionsListQuery } from '../services/dragon';
+import { setUsername, setUserAge } from '../features/cardSlice';
 import * as championimages from './index';
+import compareChampions from '../helper/compareChampions';
 
 const UserInput = ({ setselectedBackground }) => {
   const dispatch = useDispatch();
-  const { user, summoner } = useSelector((state) => state.card);
-  const [username, setUsername] = useState('');
-  const [userAge, setUserAge] = useState('18');
-  const [userDetails, setUserDetails] = useState();
+  const { user, summoner, age } = useSelector((state) => state.card);
+  const [userName, setUserName] = useState('');
+
   const [selectedChampion, setSelectedChampion] = useState('');
 
   const [fetchUser, { data: userData, isLoading: userLoading, isError: userError, error: userErrorObj, isSuccess: userSuccess }] =
@@ -19,6 +20,17 @@ const UserInput = ({ setselectedBackground }) => {
     fetchSummoner,
     { data: summonerData, isLoading: summonerLoading, isError: summonerError, error: summonerErrorObj, isSuccess: summonerSuccess },
   ] = useLazyGetSummonerQuery();
+
+  const [
+    fetchChampionMastery,
+    {
+      data: championMasteryData,
+      isLoading: championMasteryLoading,
+      isError: championMasteryError,
+      error: championMasteryErrorObj,
+      isSuccess: championMasterySuccess,
+    },
+  ] = useLazyGetChampionMasteryQuery();
 
   const {
     data: championsList,
@@ -29,7 +41,7 @@ const UserInput = ({ setselectedBackground }) => {
   } = useGetChampionsListQuery();
 
   const handleChangeUsername = (event) => {
-    setUsername(event.target.value);
+    setUserName(event.target.value);
   };
 
   const handleChangeChampion = (event) => {
@@ -38,58 +50,44 @@ const UserInput = ({ setselectedBackground }) => {
     const images = event.target.images;
     setSelectedChampion({ name: name, key: key, images: images });
   };
-  const handleChangeSkin = (event) => {
-    const selectElement = event.target;
-    const selectedOption = selectElement.options[selectElement.selectedIndex];
-    const id = selectedOption.value;
-    const path = selectedOption.getAttribute('path');
-    setselectedBackground(path);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchUser(username);
-    setUsername('');
+    fetchUser(userName);
+    dispatch(setUsername({ username: userName }));
   };
 
   const handleChangeAge = (event) => {
     const age = event.target.value;
-    setUserAge(age);
-    setUserDetails((prevDetails) => ({ ...prevDetails, age: age }));
+    dispatch(setUserAge({ age: age }));
   };
 
   useEffect(() => {
-    // console.log(championimages);
-    // if (championsListSuccess || championsListError) {
-    //   console.log(championsList);
-    //   console.log(championsListError);
-    // }
     if (selectedChampion) {
-      console.log(selectedChampion);
-      console.log(championimages);
       setselectedBackground(getChampionImages(selectedChampion, championimages));
     }
   }, [userSuccess, userError, selectedChampion]);
 
   useEffect(() => {
     if (userSuccess && userData) {
+      console.log(userData.id);
       fetchSummoner(userData.id);
+      fetchChampionMastery(userData.id).then(({ data }) => {
+        console.log(compareChampions(data, championsList.data));
+      });
     }
   }, [userSuccess, userData]);
 
   useEffect(() => {
-    if (userSuccess || userError || summonerSuccess || summonerError) {
-      console.log(summoner);
-      console.log(user);
-    }
-  }, [userSuccess, userError]);
+    console.log(championsList);
+  }, [championsList, userData]);
 
   return (
     <div className='userInputContainer'>
       <form onSubmit={handleSubmit}>
         <label>
           Username:
-          <input className='userNameInput' type='text' name='username' value={username} onChange={handleChangeUsername} />
+          <input className='userNameInput' type='text' name='username' value={userName} onChange={handleChangeUsername} />
         </label>
         <input className='submitUsername' type='submit' value='Submit' />
       </form>
@@ -109,7 +107,7 @@ const UserInput = ({ setselectedBackground }) => {
         )}
         <label className='inputCol'>
           Your Age:
-          <select value={userAge} onChange={handleChangeAge}>
+          <select value={age} onChange={handleChangeAge}>
             {[...Array(82)].map((_, i) => (
               <option key={i + 18} value={i + 18}>
                 {i + 18}

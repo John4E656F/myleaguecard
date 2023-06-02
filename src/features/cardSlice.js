@@ -3,14 +3,20 @@ import { riotApi } from '../services/riot';
 
 const initialState = {
   user: {},
+  summoner: {},
+  username: '',
+  age: 18,
 };
 
 export const cardSlice = createSlice({
   name: 'card',
   initialState,
   reducers: {
-    setUser: (state, { payload }) => {
-      state.user = payload;
+    setUsername: (state, { payload }) => {
+      state.username = payload.username;
+    },
+    setUserAge: (state, { payload }) => {
+      state.age = payload.age;
     },
   },
   extraReducers: (builder) => {
@@ -26,4 +32,4 @@ export const cardSlice = createSlice({
 
 export default cardSlice.reducer;
 
-export const { setUser } = cardSlice.actions;
+export const { setUsername, setUserAge } = cardSlice.actions;
