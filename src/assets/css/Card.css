@@ -47,6 +47,10 @@
   width: 45%;
 }
 
+.v2 {
+  width: 50%;
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -82,12 +86,13 @@
 
 .infoName {
   opacity: 95%;
+  font-size: 0.8em;
 }
 
 .infoData {
   font-weight: bolder;
   color: #c8aa6e;
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 .eloDetails {
@@ -113,8 +118,27 @@
 }
 
 .detailsHeading {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bold;
+}
+
+.championMasteryDetails {
+  display: flex;
+  gap: 1em;
+  margin-top: 0.5em;
+}
+
+.cmDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tilesAssets {
+  width: 60px;
+  height: 60px;
+  border-radius: 2em;
 }
 
 .skeletonCard {

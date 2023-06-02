@@ -16,7 +16,7 @@ const roleImages = {
 const tierImages = { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER };
 
 function Card({ backgroundImage, selectedBackground }) {
-  const { user, summoner, age } = useSelector((state) => state.card);
+  const { user, summoner, age, championMastery } = useSelector((state) => state.card);
   const [displayBG, setDisplayBG] = useState();
   const [winrate, setWinrate] = useState(null);
   const [tierImage, setTierImage] = useState(null);
@@ -41,9 +41,9 @@ function Card({ backgroundImage, selectedBackground }) {
   }, [selectedBackground, backgroundImage]);
 
   useEffect(() => {
-    console.log(displayBG);
+    console.log(championMastery);
     console.log(user);
-  }, [displayBG, user]);
+  }, [displayBG, user, championMastery]);
 
   return (
     <>
@@ -105,10 +105,25 @@ function Card({ backgroundImage, selectedBackground }) {
                 )}
               </div>
               <div className='divider v1' />
-              <div className='championMasteryDetails'>
+              <div className='championMasteryContainer'>
                 <h3 className='detailsHeading'>Champion Mastery:</h3>
+                <div className='championMasteryDetails'>
+                  {championMastery &&
+                    championMastery.map((champion, index) => (
+                      <div className='cmDetailsContainer' key={index}>
+                        <img className='tilesAssets' src={champion.tiles} alt={champion.name} />
+                        <p className='infoData'>{champion.name}</p>
+                        <p>
+                          <span className='infoName'>Level:</span> <span className='infoData'>{champion.championLevel}</span>
+                        </p>
+                        <p>
+                          <span className='infoName'>Points:</span> <span className='infoData'>{champion.championPoints}</span>
+                        </p>
+                      </div>
+                    ))}
+                </div>
               </div>
-              <div className='divider v1' />
+              <div className='divider v2' />
               <div className='userDetails'>
                 <h3 className='detailsHeading'>About me:</h3>
                 Age: {age}

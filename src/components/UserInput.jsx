@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import getChampionImages from '../helper/getChampionsImages';
 import { useLazyGetUserQuery, useLazyGetSummonerQuery, useLazyGetChampionMasteryQuery } from '../services/riot';
 import { useGetChampionsListQuery } from '../services/dragon';
-import { setUsername, setUserAge } from '../features/cardSlice';
+import { setUsername, setUserAge, setChampionsMastery } from '../features/cardSlice';
 import * as championimages from './index';
+import * as championtiles from './tilesAssets';
+
 import compareChampions from '../helper/compareChampions';
 
 const UserInput = ({ setselectedBackground }) => {
@@ -73,7 +75,8 @@ const UserInput = ({ setselectedBackground }) => {
       console.log(userData.id);
       fetchSummoner(userData.id);
       fetchChampionMastery(userData.id).then(({ data }) => {
-        console.log(compareChampions(data, championsList.data));
+        console.log(data);
+        dispatch(setChampionsMastery(compareChampions(data, championsList.data, championtiles)));
       });
     }
   }, [userSuccess, userData]);
