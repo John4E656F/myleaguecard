@@ -7,7 +7,7 @@ const initialState = {
   username: '',
   championMastery: null,
   age: 18,
-  description: '',
+  description: null,
 };
 
 export const cardSlice = createSlice({

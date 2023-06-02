@@ -138,7 +138,12 @@ function Card({ backgroundImage, selectedBackground }) {
                   <span className='infoName'>Age:</span> <span className='infoData'>{age}</span>
                 </p>
                 <p>
-                  <span className='infoName'>Description:</span> <span className='infoData description'>{description}</span>
+                  <span className='infoName'>Description:</span>{' '}
+                  <span className='infoData description'>
+                    {description
+                      ? description
+                      : `Highly active League of Legends player seeking fellow summoners to share in the thrill of victory on the rift. All levels welcome. Let's make memories!`}
+                  </span>
                 </p>
               </div>
             </div>

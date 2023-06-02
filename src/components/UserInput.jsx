@@ -128,13 +128,13 @@ const UserInput = ({ setselectedBackground }) => {
         id='description'
         value={description}
         onChange={handleDescriptionChange}
-        maxLength='120'
+        maxLength='130'
         rows={3}
         cols={30}
         style={{ resize: 'none', borderRadius: '0.2em' }}
         placeholder=' Enter your description here'
       />
-      <p style={{ fontSize: '0.8em', color: 'gray' }}>Description has 120-character limit. Character count: {description ? description.length : 0}</p>
+      <p style={{ fontSize: '0.8em', color: 'gray' }}>Description has 130-character limit. Character count: {description ? description.length : 0}</p>
     </div>
   );
 };
