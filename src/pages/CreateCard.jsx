@@ -9,10 +9,6 @@ function CreateCard() {
   const [selectedBackground, setselectedBackground] = useState();
   const [data, setData] = useState();
 
-  useEffect(() => {
-    console.log(selectedBackground);
-  }, [selectedBackground]);
-
   return (
     <>
       <div className='inputContainer'>
