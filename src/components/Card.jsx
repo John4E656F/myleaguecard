@@ -47,7 +47,7 @@ function Card({ backgroundImage, selectedBackground }) {
 
   return (
     <>
-      {summoner ? (
+      {summoner && Object.keys(user).length > 0 ? (
         <div className='card'>
           <div
             className='background'
@@ -108,19 +108,27 @@ function Card({ backgroundImage, selectedBackground }) {
               <div className='championMasteryContainer'>
                 <h3 className='detailsHeading'>Champion Mastery:</h3>
                 <div className='championMasteryDetails'>
-                  {championMastery &&
-                    championMastery.map((champion, index) => (
-                      <div className='cmDetailsContainer' key={index}>
-                        <img className='tilesAssets' src={champion.tiles} alt={champion.name} />
-                        <p className='infoData'>{champion.name}</p>
-                        <p>
-                          <span className='infoName'>Level:</span> <span className='infoData'>{champion.championLevel}</span>
-                        </p>
-                        <p>
-                          <span className='infoName'>Points:</span> <span className='infoData'>{champion.championPoints}</span>
-                        </p>
-                      </div>
-                    ))}
+                  {championMastery
+                    ? championMastery.map((champion, index) => (
+                        <div className='cmDetailsContainer' key={index}>
+                          <img className='tilesAssets' src={champion.tiles} alt={champion.name} />
+                          <p className='infoData'>{champion.name}</p>
+                          <p>
+                            <span className='infoName'>Level:</span> <span className='infoData'>{champion.championLevel}</span>
+                          </p>
+                          <p>
+                            <span className='infoName'>Points:</span> <span className='infoData'>{champion.championPoints}</span>
+                          </p>
+                        </div>
+                      ))
+                    : [...Array(3)].map((_, i) => (
+                        <div key={i} className='cmDetailsContainer'>
+                          <div className='skeletonCMImage' />
+                          <div className='skeletonCMName' />
+                          <div className='skeletonCMLevel' />
+                          <div className='skeletonCMPoints' />
+                        </div>
+                      ))}
                 </div>
               </div>
               <div className='divider v2' />
@@ -137,26 +145,28 @@ function Card({ backgroundImage, selectedBackground }) {
             <div className='skeletonTitle' />
             <div className='skeletonPositionIcon' />
           </div>
+          <div className='divider' />
           <div className='skeletonDetails'>
             <div className='skeletonRank' />
             <div className='skeletonRankIcon' />
           </div>
+          <div className='divider v1' />
           <div className='skeletonExtraDetails'>
-            <div className='skeletonUserInfo'>
-              <div className='skeletonAge' />
-              <div className='skeletonUsualPlayTime' />
-            </div>
-            <div className='skeletonSocial'>
-              <div className='skeletonHolder'>
-                <div className='skeletonHolderIcon' />
-                <div className='skeletonHolderName' />
+            <div className='skeletonUserInfo' />
+            {
+              <div className='skeletonCMContainer'>
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className='skeletonCMDetails'>
+                    <div className='skeletonCMImage' />
+                    <div className='skeletonCMName' />
+                    <div className='skeletonCMLevel' />
+                    <div className='skeletonCMPoints' />
+                  </div>
+                ))}
               </div>
-              <div className='skeletonHolder'>
-                <div className='skeletonHolderIcon' />
-                <div className='skeletonHolderName' />
-              </div>
-            </div>
+            }
           </div>
+          <div className='divider v2' />
         </div>
       )}
     </>
