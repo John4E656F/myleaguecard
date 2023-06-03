@@ -18,8 +18,8 @@ const roleImages = {
 };
 const tierImages = { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER };
 
-function Card({ backgroundImage, selectedBackground }) {
-  const { user, summoner, age, championMastery, description, discord, twitch } = useSelector((state) => state.card);
+function Card({ backgroundImage }) {
+  const { user, summoner, championBg, age, championMastery, description, discord, twitch } = useSelector((state) => state.card);
   const [displayBG, setDisplayBG] = useState();
   const [winrate, setWinrate] = useState(null);
   const [tierImage, setTierImage] = useState(null);
@@ -35,16 +35,15 @@ function Card({ backgroundImage, selectedBackground }) {
   }, [user, summoner]);
 
   useEffect(() => {
-    if (selectedBackground) {
-      let userSelectedBackground = selectedBackground.split('/').pop().split('.')[0];
-      if (userSelectedBackground in Backgrounds) {
-        setDisplayBG(Backgrounds[userSelectedBackground]);
+    if (championBg) {
+      if (championBg in Backgrounds) {
+        setDisplayBG(Backgrounds[championBg]);
       }
     }
-  }, [selectedBackground, backgroundImage]);
+  }, [championBg, backgroundImage]);
 
   useEffect(() => {
-    console.log(description);
+    console.log(displayBG);
     console.log(user);
   }, [displayBG, user, description]);
 
@@ -56,7 +55,7 @@ function Card({ backgroundImage, selectedBackground }) {
             className='background'
             style={{
               zIndex: 1,
-              backgroundImage: `url(${selectedBackground ? displayBG : backgroundImage})`,
+              backgroundImage: `url(${championBg ? displayBG : backgroundImage})`,
             }}
           >
             <div className='details'>

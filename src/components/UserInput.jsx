@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import getChampionImages from '../helper/getChampionsImages';
 import { useLazyGetUserQuery, useLazyGetSummonerQuery, useLazyGetChampionMasteryQuery } from '../services/riot';
 import { useGetChampionsListQuery } from '../services/dragon';
-import { setUsername, setChampionsMastery, setUserAge, setUserDescription, setDiscord, setTwitch } from '../features/cardSlice';
+import { setUsername, setChampionsMastery, setChampionBg, setUserAge, setUserDescription, setDiscord, setTwitch } from '../features/cardSlice';
 import * as championimages from './index';
 import * as championtiles from './tilesAssets';
 
 import compareChampions from '../helper/compareChampions';
 
-const UserInput = ({ setselectedBackground }) => {
+const UserInput = () => {
   const dispatch = useDispatch();
-  const { user, summoner, age, description, discord, twitch } = useSelector((state) => state.card);
+  const { age, description, discord, twitch } = useSelector((state) => state.card);
   const [userName, setUserName] = useState('');
 
   const [selectedChampion, setSelectedChampion] = useState('');
@@ -48,9 +48,7 @@ const UserInput = ({ setselectedBackground }) => {
 
   const handleChangeChampion = (event) => {
     const name = event.target.value;
-    const key = event.target.keyid;
-    const images = event.target.images;
-    setSelectedChampion({ name: name, key: key, images: images });
+    dispatch(setChampionBg(name));
   };
 
   const handleSubmit = (event) => {
@@ -87,12 +85,6 @@ const UserInput = ({ setselectedBackground }) => {
       });
     }
   }, [userSuccess, userData]);
-
-  useEffect(() => {
-    if (selectedChampion) {
-      setselectedBackground(getChampionImages(selectedChampion, championimages));
-    }
-  }, [selectedChampion]);
 
   return (
     <div className='userInputContainer'>

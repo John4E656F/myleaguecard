@@ -6,6 +6,7 @@ const initialState = {
   summoner: {},
   username: '',
   championMastery: null,
+  championBg: '',
   age: 18,
   description: null,
   discord: '',
@@ -21,6 +22,9 @@ export const cardSlice = createSlice({
     },
     setChampionsMastery: (state, { payload }) => {
       state.championMastery = payload;
+    },
+    setChampionBg: (state, { payload }) => {
+      state.championBg = payload;
     },
     setUserAge: (state, { payload }) => {
       state.age = payload.age;
@@ -48,4 +52,4 @@ export const cardSlice = createSlice({
 
 export default cardSlice.reducer;
 
-export const { setUsername, setChampionsMastery, setUserAge, setUserDescription, setDiscord, setTwitch } = cardSlice.actions;
+export const { setUsername, setChampionsMastery, setChampionBg, setUserAge, setUserDescription, setDiscord, setTwitch } = cardSlice.actions;
