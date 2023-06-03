@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import getChampionImages from '../helper/getChampionsImages';
 import { useLazyGetUserQuery, useLazyGetSummonerQuery, useLazyGetChampionMasteryQuery } from '../services/riot';
 import { useGetChampionsListQuery } from '../services/dragon';
-import { setUsername, setChampionsMastery, setUserAge, setUserDescription } from '../features/cardSlice';
+import { setUsername, setChampionsMastery, setUserAge, setUserDescription, setDiscord, setTwitch } from '../features/cardSlice';
 import * as championimages from './index';
 import * as championtiles from './tilesAssets';
 
@@ -11,7 +11,7 @@ import compareChampions from '../helper/compareChampions';
 
 const UserInput = ({ setselectedBackground }) => {
   const dispatch = useDispatch();
-  const { user, summoner, age, description } = useSelector((state) => state.card);
+  const { user, summoner, age, description, discord, twitch } = useSelector((state) => state.card);
   const [userName, setUserName] = useState('');
 
   const [selectedChampion, setSelectedChampion] = useState('');
@@ -51,9 +51,6 @@ const UserInput = ({ setselectedBackground }) => {
     const key = event.target.keyid;
     const images = event.target.images;
     setSelectedChampion({ name: name, key: key, images: images });
-    if (selectedChampion) {
-      setselectedBackground(getChampionImages(selectedChampion, championimages));
-    }
   };
 
   const handleSubmit = (event) => {
@@ -71,6 +68,15 @@ const UserInput = ({ setselectedBackground }) => {
     dispatch(setUserDescription({ description: event.target.value }));
   };
 
+  const handleSocialChange = (event) => {
+    const social = event.target.name;
+    if (social === 'discord') {
+      dispatch(setDiscord({ discord: event.target.value }));
+    } else if (social === 'twitch') {
+      dispatch(setTwitch({ twitch: event.target.value }));
+    }
+  };
+
   useEffect(() => {
     if (userSuccess && userData) {
       console.log(userData.id);
@@ -83,8 +89,10 @@ const UserInput = ({ setselectedBackground }) => {
   }, [userSuccess, userData]);
 
   useEffect(() => {
-    console.log(championsList);
-  }, [championsList, userData]);
+    if (selectedChampion) {
+      setselectedBackground(getChampionImages(selectedChampion, championimages));
+    }
+  }, [selectedChampion]);
 
   return (
     <div className='userInputContainer'>
@@ -132,6 +140,14 @@ const UserInput = ({ setselectedBackground }) => {
         placeholder=' Enter your description here'
       />
       <p style={{ fontSize: '0.8em', color: 'gray' }}>Description has 130-character limit. Character count: {description ? description.length : 0}</p>
+      <label>
+        Discord:
+        <input className='socialInput' type='text' name='discord' value={discord} onChange={handleSocialChange} minLength={2} maxLength={32} />
+      </label>
+      <label>
+        Twitch:
+        <input className='socialInput' type='text' name='twitch' value={twitch} onChange={handleSocialChange} minLength={4} maxLength={25} />
+      </label>
     </div>
   );
 };

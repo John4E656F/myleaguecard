@@ -19,7 +19,7 @@ const roleImages = {
 const tierImages = { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER };
 
 function Card({ backgroundImage, selectedBackground }) {
-  const { user, summoner, age, championMastery, description } = useSelector((state) => state.card);
+  const { user, summoner, age, championMastery, description, discord, twitch } = useSelector((state) => state.card);
   const [displayBG, setDisplayBG] = useState();
   const [winrate, setWinrate] = useState(null);
   const [tierImage, setTierImage] = useState(null);
@@ -151,7 +151,18 @@ function Card({ backgroundImage, selectedBackground }) {
               </div>
             </div>
             <div className='socialContainer'>
-              <div className='socialIcons'></div>
+              {discord.trim() !== '' && (
+                <div className='socialIcons'>
+                  <img className='socialIcon' src={DiscordIcon} alt='Discord' />
+                  <p className='socialUsername'>{discord}</p>
+                </div>
+              )}
+              {twitch.trim() !== '' && (
+                <div className='socialIcons'>
+                  <img className='socialIcon' src={TwitchIcon} alt='Discord' />
+                  <p className='socialUsername'>{twitch}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

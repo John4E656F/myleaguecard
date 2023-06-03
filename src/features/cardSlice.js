@@ -8,6 +8,8 @@ const initialState = {
   championMastery: null,
   age: 18,
   description: null,
+  discord: '',
+  twitch: '',
 };
 
 export const cardSlice = createSlice({
@@ -26,6 +28,12 @@ export const cardSlice = createSlice({
     setUserDescription: (state, { payload }) => {
       state.description = payload.description;
     },
+    setDiscord: (state, { payload }) => {
+      state.discord = payload.discord;
+    },
+    setTwitch: (state, { payload }) => {
+      state.twitch = payload.twitch;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,4 +48,4 @@ export const cardSlice = createSlice({
 
 export default cardSlice.reducer;
 
-export const { setUsername, setChampionsMastery, setUserAge, setUserDescription } = cardSlice.actions;
+export const { setUsername, setChampionsMastery, setUserAge, setUserDescription, setDiscord, setTwitch } = cardSlice.actions;
