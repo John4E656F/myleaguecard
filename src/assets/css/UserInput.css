@@ -44,3 +44,26 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+.socialInput {
+  margin-top: 1em;
+}
+
+.socialData {
+  margin-left: 1em;
+}
+
+.downloadButton {
+  margin-top: 1em;
+  background-color: #c8aa6e;
+  padding: 0.8em;
+  border-radius: 1em;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.downloadButton:hover {
+  background-color: #ebca89;
+}

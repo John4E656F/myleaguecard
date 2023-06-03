@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import getChampionImages from '../helper/getChampionsImages';
 import { useLazyGetUserQuery, useLazyGetSummonerQuery, useLazyGetChampionMasteryQuery } from '../services/riot';
 import { useGetChampionsListQuery } from '../services/dragon';
 import { setUsername, setChampionsMastery, setChampionBg, setUserAge, setUserDescription, setDiscord, setTwitch } from '../features/cardSlice';
-import * as championimages from './index';
 import * as championtiles from './tilesAssets';
+import * as htmlToImage from 'html-to-image';
+import { saveAs } from 'file-saver';
 
 import compareChampions from '../helper/compareChampions';
 
 const UserInput = () => {
   const dispatch = useDispatch();
-  const { age, description, discord, twitch } = useSelector((state) => state.card);
+  const { user, age, description, discord, twitch } = useSelector((state) => state.card);
   const [userName, setUserName] = useState('');
 
   const [selectedChampion, setSelectedChampion] = useState('');
@@ -75,6 +75,12 @@ const UserInput = () => {
     }
   };
 
+  const downloadImage = async () => {
+    const node = document.getElementsByClassName('card')[0]; // change this to your card's classname
+    const dataUrl = await htmlToImage.toPng(node);
+    saveAs(dataUrl, 'card.png');
+  };
+
   useEffect(() => {
     if (userSuccess && userData) {
       console.log(userData.id);
@@ -132,14 +138,19 @@ const UserInput = () => {
         placeholder=' Enter your description here'
       />
       <p style={{ fontSize: '0.8em', color: 'gray' }}>Description has 130-character limit. Character count: {description ? description.length : 0}</p>
-      <label>
+      <label className='socialInput'>
         Discord:
-        <input className='socialInput' type='text' name='discord' value={discord} onChange={handleSocialChange} minLength={2} maxLength={32} />
+        <input className='socialData' type='text' name='discord' value={discord} onChange={handleSocialChange} minLength={2} maxLength={32} />
       </label>
-      <label>
+      <label className='socialInput'>
         Twitch:
-        <input className='socialInput' type='text' name='twitch' value={twitch} onChange={handleSocialChange} minLength={4} maxLength={25} />
+        <input className='socialData' type='text' name='twitch' value={twitch} onChange={handleSocialChange} minLength={4} maxLength={25} />
       </label>
+      {Object.keys(user).length > 0 ? (
+        <button className='downloadButton' onClick={downloadImage}>
+          Download Card
+        </button>
+      ) : null}
     </div>
   );
 };
