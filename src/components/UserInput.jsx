@@ -123,7 +123,7 @@ const UserInput = ({ setselectedBackground }) => {
       <label htmlFor='description'>Description:</label>
       <textarea
         id='description'
-        value={description}
+        value={description ? description : ''}
         onChange={handleDescriptionChange}
         maxLength='130'
         rows={3}

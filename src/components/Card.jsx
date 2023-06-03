@@ -147,6 +147,9 @@ function Card({ backgroundImage, selectedBackground }) {
                 </p>
               </div>
             </div>
+            <div className='socialContainer'>
+              <div className='socialIcons'></div>
+            </div>
           </div>
         </div>
       ) : (
