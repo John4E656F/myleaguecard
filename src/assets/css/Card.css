@@ -144,7 +144,7 @@
 
 .description {
   display: block;
-  max-width: 50%;
+  max-width: 100%;
   word-wrap: break-word;
 }
 
@@ -159,6 +159,7 @@
 .socialIcons {
   width: 5em;
   height: 5em;
+  border-radius: 2em;
   background-color: aqua;
 }
 .skeletonCard {

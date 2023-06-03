@@ -5,6 +5,9 @@ import { top, jungle, mid, bot, support, fill } from '../assets/roles/roles';
 import { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER } from '../assets/ranks/ranks';
 import * as Backgrounds from './index';
 
+import DiscordIcon from '../assets/socials/DiscordIcon.svg';
+import TwitchIcon from '../assets/socials/TwitchIcon.svg';
+
 const roleImages = {
   top: { name: 'top', assets: top },
   jungle: { name: 'jungle', assets: jungle },
