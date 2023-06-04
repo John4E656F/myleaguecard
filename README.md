@@ -74,7 +74,7 @@ Users can further customize their profile card by selecting their favorite champ
 
 ## Contributing
 
-Contributions are always welcome! Please read the [contribution guidelines](contributing.md) first.
+Contributions are always welcome! Please read the [contribution guidelines](HowToContribute.md) first.
 
 ## License
 
