@@ -171,12 +171,12 @@ function Card({ backgroundImage }) {
             <div className='skeletonTitle' />
             <div className='skeletonPositionIcon' />
           </div>
-          <div className='divider' />
+          <div className='skeletonDivider' />
           <div className='skeletonDetails'>
             <div className='skeletonRank' />
             <div className='skeletonRankIcon' />
           </div>
-          <div className='divider v1' />
+          <div className='skeletonDivider sv1' />
           <div className='skeletonExtraDetails'>
             <div className='skeletonUserInfo' />
             {
@@ -192,7 +192,7 @@ function Card({ backgroundImage }) {
               </div>
             }
           </div>
-          <div className='divider v2' />
+          <div className='skeletonDivider sv2' />
         </div>
       )}
     </>

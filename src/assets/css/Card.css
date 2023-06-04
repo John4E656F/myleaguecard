@@ -38,18 +38,19 @@
 }
 
 .divider {
-  height: 2px;
-  width: 42%;
+  height: 0px;
+  width: 70%;
   margin: 5px 0 5px 0;
-  border: 1.5px solid rgba(112, 112, 112, 0.286);
+  border: 3px solid rgba(112, 112, 112, 0.286);
+  border-radius: 2em;
 }
 
 .v1 {
-  width: 45%;
+  width: 75%;
 }
 
 .v2 {
-  width: 50%;
+  width: 80%;
 }
 
 .cardHeader {
@@ -175,6 +176,22 @@
   border-radius: 1em;
 }
 
+.skeletonDivider {
+  height: 0.1px;
+  width: 45%;
+  margin: 5px 0 5px 0;
+  border: 3px solid rgba(112, 112, 112, 0.286);
+  border-radius: 2em;
+}
+
+.sv1 {
+  width: 50%;
+}
+
+.sv2 {
+  width: 55%;
+}
+
 .socialUsername {
   font-weight: bolder;
   color: #c8aa6e;
@@ -280,4 +297,331 @@
   border-radius: 0.5em;
   background-color: rgb(202, 202, 202);
   animation: pulse 3s infinite ease-in-out;
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .card {
+    height: 450px;
+    width: 650px;
+    margin-right: 1em;
+  }
+
+  .cardHeader {
+    width: 70%;
+  }
+
+  .rankDetails {
+    gap: 1em;
+  }
+
+  .username {
+    font-size: 1.5em;
+  }
+
+  .rankDetails {
+    gap: 3em;
+  }
+
+  .infoText {
+    font-size: 1em;
+  }
+
+  .infoName {
+    opacity: 95%;
+    font-size: 0.7em;
+  }
+
+  .infoData {
+    font-size: 0.8em;
+  }
+
+  .detailsHeading {
+    font-size: 1em;
+  }
+
+  .skeletonCard {
+    height: 400px;
+    width: 600px;
+  }
+}
+
+/* Small devices (tablets) */
+@media (min-width: 600px) and (max-width: 899px) {
+  .card {
+    height: 450px;
+    width: 600px;
+  }
+
+  .cardHeader {
+    width: 70%;
+  }
+
+  .rankDetails {
+    gap: 1em;
+  }
+
+  .username {
+    font-size: 1.5em;
+  }
+
+  .infoText {
+    font-size: 1em;
+  }
+
+  .infoName {
+    opacity: 95%;
+    font-size: 0.7em;
+  }
+
+  .infoData {
+    font-size: 0.8em;
+  }
+
+  .detailsHeading {
+    font-size: 1em;
+  }
+
+  .skeletonCard {
+    height: 400px;
+    width: 500px;
+  }
+
+  .skeletonTitle {
+    height: 2.5em;
+  }
+
+  .skeletonPositionIcon {
+    width: 2.5em;
+    height: 2.5em;
+  }
+
+  .skeletonRank {
+    width: 60%;
+    height: 4.5em;
+  }
+
+  .skeletonRankIcon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .skeletonExtraDetails {
+    width: 40%;
+    margin-top: 0.8em;
+  }
+
+  .skeletonCMImage {
+    width: 50px;
+    height: 50px;
+  }
+
+  .skeletonCMName {
+    width: 3.5em;
+    height: 1.5em;
+  }
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 599px) {
+  .card {
+    height: 300px;
+    width: 450px;
+  }
+
+  .background::before {
+    border: 2px solid rgba(112, 112, 112, 0.286);
+    clip-path: polygon(0 0, 50% 0, 65% 100%, 0% 100%);
+  }
+
+  .divider {
+    width: 65%;
+  }
+
+  .v1 {
+    width: 70%;
+  }
+
+  .v2 {
+    width: 80%;
+  }
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    align-items: center;
+  }
+
+  .username {
+    font-size: 0.8em;
+  }
+
+  .rank {
+    width: 1.5em;
+  }
+
+  .tier {
+    width: 2.5em;
+  }
+
+  .rankDetails {
+    gap: 2em;
+  }
+
+  .infoText {
+    font-size: 0.6em;
+  }
+
+  .infoName {
+    font-size: 0.6em;
+  }
+
+  .infoData {
+    font-size: 0.8em;
+  }
+
+  .detailsHeading {
+    font-size: 0.9em;
+  }
+
+  .championMasteryDetails {
+    gap: 0.5em;
+  }
+
+  .tilesAssets {
+    width: 45px;
+    height: 45px;
+    border-radius: 2em;
+  }
+
+  .socialIcon {
+    width: 3em;
+    height: 3em;
+    background-color: white;
+    padding: 4px;
+    border-radius: 1em;
+  }
+
+  .skeletonDivider {
+    height: 0.1px;
+    width: 45%;
+    margin: 5px 0 5px 0;
+    border: 3px solid rgba(112, 112, 112, 0.286);
+    border-radius: 2em;
+  }
+
+  .sv1 {
+    width: 50%;
+  }
+
+  .sv2 {
+    width: 55%;
+  }
+
+  .socialUsername {
+    font-weight: bolder;
+    color: #c8aa6e;
+    font-size: 1em;
+    max-width: 150px;
+    word-wrap: break-word;
+  }
+
+  .skeletonCard {
+    height: 500px;
+    width: 700px;
+    border-radius: 1em;
+    padding: 25px;
+    padding-left: 2em;
+    background-color: rgba(240, 248, 255, 0.707);
+    animation: pulse 2s infinite ease-in-out;
+  }
+
+  .skeletonHeader,
+  .skeletonDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+
+  .skeletonTitle {
+    width: 60%;
+    height: 3em;
+    background-color: rgb(202, 202, 202);
+    border-radius: 1em;
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  .skeletonPositionIcon {
+    width: 3em;
+    height: 3em;
+    background-color: rgb(202, 202, 202);
+    border-radius: 100%;
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  .skeletonDetails {
+    display: flex;
+    width: 43%;
+    justify-content: space-between;
+    margin-top: 1em;
+  }
+
+  .skeletonRank {
+    width: 60%;
+    height: 5em;
+    background-color: rgb(202, 202, 202);
+    border-radius: 1em;
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  .skeletonRankIcon {
+    width: 80px;
+    height: 80px;
+    background-color: rgb(202, 202, 202);
+    border-radius: 2em;
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  .skeletonExtraDetails {
+    width: 40%;
+    margin-top: 1em;
+  }
+  .skeletonUserInfo {
+    width: 70%;
+    height: 2em;
+    background-color: rgb(202, 202, 202);
+    border-radius: 0.5em;
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  .skeletonCMContainer {
+    display: flex;
+  }
+
+  .skeletonCMDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin-top: 0.5em;
+    gap: 0.5em;
+  }
+
+  .skeletonCMImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 2em;
+    background-color: rgb(202, 202, 202);
+    animation: pulse 3s infinite ease-in-out;
+  }
+
+  .skeletonCMName {
+    width: 4em;
+    height: 2em;
+    border-radius: 0.5em;
+    background-color: rgb(202, 202, 202);
+    animation: pulse 3s infinite ease-in-out;
+  }
 }
