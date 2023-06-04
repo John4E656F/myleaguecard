@@ -115,10 +115,10 @@ function Card({ backgroundImage }) {
                         <div className='cmDetailsContainer' key={index}>
                           <img className='tilesAssets' src={champion.tiles} alt={champion.name} />
                           <p className='infoData'>{champion.name}</p>
-                          <p>
+                          <p className='infoText'>
                             <span className='infoName'>Level:</span> <span className='infoData'>{champion.championLevel}</span>
                           </p>
-                          <p>
+                          <p className='infoText'>
                             <span className='infoName'>Points:</span> <span className='infoData'>{champion.championPoints}</span>
                           </p>
                         </div>
@@ -136,10 +136,10 @@ function Card({ backgroundImage }) {
               <div className='divider v2' />
               <div className='userDetails'>
                 <h3 className='detailsHeading'>About me:</h3>
-                <p>
+                <p className='infoText'>
                   <span className='infoName'>Age:</span> <span className='infoData'>{age}</span>
                 </p>
-                <p>
+                <p className='infoText'>
                   <span className='infoName'>Description:</span>{' '}
                   <span className='infoData description'>
                     {description
