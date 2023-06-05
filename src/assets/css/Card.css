@@ -529,101 +529,64 @@
   }
 
   .skeletonCard {
-    height: 500px;
-    width: 700px;
+    height: 300px;
+    width: 450px;
     border-radius: 1em;
-    padding: 25px;
-    padding-left: 2em;
-    background-color: rgba(240, 248, 255, 0.707);
-    animation: pulse 2s infinite ease-in-out;
   }
 
   .skeletonHeader,
   .skeletonDetails {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-    align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
 
   .skeletonTitle {
-    width: 60%;
-    height: 3em;
-    background-color: rgb(202, 202, 202);
-    border-radius: 1em;
-    animation: pulse 3s infinite ease-in-out;
+    height: 2em;
+    border-radius: 0.8em;
   }
 
   .skeletonPositionIcon {
-    width: 3em;
-    height: 3em;
-    background-color: rgb(202, 202, 202);
-    border-radius: 100%;
-    animation: pulse 3s infinite ease-in-out;
-  }
-
-  .skeletonDetails {
-    display: flex;
-    width: 43%;
-    justify-content: space-between;
-    margin-top: 1em;
+    width: 2.5em;
+    height: 2.5em;
   }
 
   .skeletonRank {
-    width: 60%;
-    height: 5em;
-    background-color: rgb(202, 202, 202);
-    border-radius: 1em;
-    animation: pulse 3s infinite ease-in-out;
+    height: 3em;
   }
 
   .skeletonRankIcon {
-    width: 80px;
-    height: 80px;
-    background-color: rgb(202, 202, 202);
-    border-radius: 2em;
-    animation: pulse 3s infinite ease-in-out;
+    width: 60px;
+    height: 60px;
   }
 
   .skeletonExtraDetails {
     width: 40%;
-    margin-top: 1em;
+    margin-top: 0.5em;
   }
   .skeletonUserInfo {
     width: 70%;
-    height: 2em;
-    background-color: rgb(202, 202, 202);
-    border-radius: 0.5em;
-    animation: pulse 3s infinite ease-in-out;
+    height: 1.4em;
   }
 
   .skeletonCMContainer {
     display: flex;
+    gap: 1em;
   }
 
   .skeletonCMDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 40%;
-    margin-top: 0.5em;
     gap: 0.5em;
   }
 
   .skeletonCMImage {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 2em;
     background-color: rgb(202, 202, 202);
     animation: pulse 3s infinite ease-in-out;
   }
 
   .skeletonCMName {
-    width: 4em;
-    height: 2em;
-    border-radius: 0.5em;
-    background-color: rgb(202, 202, 202);
-    animation: pulse 3s infinite ease-in-out;
+    width: 3.5em;
+    height: 1.5em;
   }
 }
